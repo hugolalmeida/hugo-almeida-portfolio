@@ -2,7 +2,7 @@
   "name": "hugo-almeida-portfolio",
   "version": "0.1.0",
   "private": true,
-  "description": "Portfólio de Hugo Almeida — desenvolvimento web e automação",
+  "description": "Portfólio de Hugo L. Almeida — desenvolvimento web e automação",
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "start": "node scripts/serve.mjs",

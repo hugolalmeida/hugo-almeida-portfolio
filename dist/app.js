@@ -2,7 +2,7 @@ const cases = {
   "libby": {
     "number": "01 / AUTOMAÇÃO & PRODUTO",
     "title": "Libby",
-    "deck": "Da rotina contábil a uma operação conectada e acompanhada.",
+    "deck": "Uma biblioteca de automações para simplificar a rotina de diferentes áreas.",
     "tags": [
       "Python",
       "FastAPI",
@@ -11,7 +11,7 @@ const cases = {
       "Windows RPA"
     ],
     "challenge": "Concentrar rotinas que dependem de diferentes sistemas, documentos e ambientes de execução, oferecendo uma forma clara de iniciar trabalhos e acompanhar seus resultados.",
-    "contribution": "Desenvolvimento da central web e de automações utilizadas no trabalho diário na Canella & Santos: integrações, organização dos fluxos e acompanhamento das execuções.",
+    "contribution": "Desenvolvo e mantenho a Libby de forma autônoma na Canella & Santos Contabilidade. O nome vem de biblioteca: ela reúne praticamente todas as automações que criei para o Departamento Pessoal, Fiscal e outras rotinas, incluindo Gestta e portal Onvio.",
     "features": [
       "Catálogo de automações e ferramentas organizado por área e recurso.",
       "Filas por recurso e agentes em VMs Windows para tarefas de desktop.",
@@ -26,7 +26,7 @@ const cases = {
       "Executar no ambiente adequado",
       "Revisar o resultado"
     ],
-    "note": "Aplicação interna em uso profissional. A demonstração deste portfólio é ilustrativa, usa dados fictícios e não se conecta aos sistemas da empresa. O código da central permanece privado.",
+    "note": "Aplicação interna em uso profissional. Os indicadores do dashboard são um registro do momento da captura. Contatos e identificadores pessoais foram ocultados nas telas de execução. A página pública de apresentação e a medição de tempo poupado estão em preparação. O código da central permanece privado.",
     "links": []
   },
   "ebooks": {
@@ -41,7 +41,7 @@ const cases = {
       "PDF"
     ],
     "challenge": "Distribuir materiais digitais em eventos e campanhas, organizar o acesso dos leitores e dar à equipe uma forma de administrar ebooks e acompanhar a origem dos leads.",
-    "contribution": "Desenvolvimento da aplicação web para a Canella & Santos, integrando estante de conteúdo, acesso por evento, cadastro de leads e painel da equipe.",
+    "contribution": "Desenvolvimento da aplicação web para a Canella & Santos Contabilidade, integrando estante de conteúdo, acesso por evento, cadastro de leads e painel da equipe.",
     "features": [
       "Acesso a um ebook pelo QR code de um evento.",
       "Biblioteca com regras de visibilidade e arquivamento de materiais.",
@@ -76,7 +76,7 @@ const cases = {
       "PDF"
     ],
     "challenge": "Reunir avisos e alterações de fontes diferentes e encaminhá-los aos responsáveis, reduzindo a necessidade de procurar cada informação manualmente.",
-    "contribution": "Desenvolvimento dos bots Gerson, Rebecca e Bip para rotinas de informação da Canella & Santos, com leitura, organização de dados e comunicação no Discord.",
+    "contribution": "Desenvolvimento dos bots Gerson, Rebecca e Bip para rotinas de informação da Canella & Santos Contabilidade, com leitura, organização de dados e comunicação no Discord.",
     "features": [
       "Gerson: monitoramento de cadastros, histórico de alterações e relatórios.",
       "Rebecca: leitura de avisos DEC, agrupamento por empresa e identificação de responsáveis.",
@@ -139,38 +139,37 @@ const cases = {
     ]
   }
 };
-const demoViews = {
-overview:{title:'Visão geral',html:`<div class="demo-stats"><div class="demo-stat"><strong>12</strong><span>Rotinas no catálogo</span></div><div class="demo-stat"><strong class="green">8</strong><span>Entregas concluídas</span></div><div class="demo-stat"><strong>2</strong><span>Aguardando na fila</span></div></div><p class="demo-list-title">Atividade recente</p><div class="demo-row"><span>Emissão de documentos</span><span class="badge">Concluída</span></div><div class="demo-row"><span>Conferência de valores</span><span class="badge">Concluída</span></div><div class="demo-row"><span>Publicação de arquivos</span><span class="badge wait">Na fila</span></div>`},
-execution:{title:'Execução acompanhada',html:`<div class="progress-head"><strong>Emissão de documentos</strong><span class="badge">Concluída</span></div><div class="progress-track"><span></span></div><div class="demo-log"><div><span>✓</span> Parâmetros validados</div><div><span>✓</span> Agente Windows conectado</div><div><span>✓</span> Documentos gerados</div><div><span>✓</span> Resultado disponível para revisão</div></div>`},
-check:{title:'Conferência de resultados',html:`<div class="check-summary">✓ &nbsp; Resultado organizado para revisão humana</div><div class="demo-stats"><div class="demo-stat"><strong>20</strong><span>Itens analisados</span></div><div class="demo-stat"><strong class="green">18</strong><span>Correspondências</span></div><div class="demo-stat"><strong>2</strong><span>Para conferir</span></div></div><div class="demo-row"><span>Empresa de exemplo A</span><span class="badge">Confere</span></div><div class="demo-row"><span>Empresa de exemplo B</span><span class="badge wait">Revisar valor</span></div>`}
+const shots = {
+ dashboard: ['assets/libby-dashboard-metrics.png', 'Dashboard da Libby com indicadores de execução'],
+ executions: ['assets/libby-executions-redacted.png', 'Histórico de execuções da Libby com identificadores e contatos ocultados'],
+ catalog: ['assets/libby-catalog-metrics.png', 'Catálogo da Libby organizado por área e com contagens de automações']
 };
-const panel=document.querySelector('#demo-panel');
-const tabs=[...document.querySelectorAll('[data-view]')];
-function showView(button){
- const view=demoViews[button.dataset.view];
- tabs.forEach(tab=>{const active=tab===button;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;});
- document.querySelector('#demo-title').textContent=view.title;
- panel.setAttribute('aria-labelledby',button.id);panel.innerHTML=view.html;
-}
-tabs.forEach((button,index)=>{
- button.addEventListener('click',()=>showView(button));
- button.addEventListener('keydown',event=>{
- const actions={ArrowRight:(index+1)%tabs.length,ArrowLeft:(index+tabs.length-1)%tabs.length,Home:0,End:tabs.length-1};
- if(!(event.key in actions))return;event.preventDefault();const next=tabs[actions[event.key]];showView(next);next.focus();
- });
-});
-showView(tabs[0]);
+document.querySelectorAll('[data-shot]').forEach(button=>button.addEventListener('click',()=>{
+ const [src,alt]=shots[button.dataset.shot];
+ document.querySelectorAll('[data-shot]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+ document.querySelector('#libby-shot').src=src;
+ document.querySelector('#libby-shot').alt=window.portfolioTranslate(alt);
+ document.querySelector('#shot-link').href=src;
+}));
 document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{
  document.querySelectorAll('[data-filter]').forEach(filter=>{const active=filter===button;filter.classList.toggle('selected',active);filter.setAttribute('aria-pressed',String(active));});
  let visible=0;document.querySelectorAll('.card').forEach(card=>{const show=button.dataset.filter==='all'||card.dataset.category.split(' ').includes(button.dataset.filter);card.hidden=!show;if(show)visible++;});
- document.querySelector('#filter-status').textContent=visible+' projeto'+(visible===1?'':'s')+' na seleção.';
+ document.querySelector('#filter-status').textContent=window.portfolioLanguage==='en'?visible+' project'+(visible===1?'':'s')+' in this selection.':visible+' projeto'+(visible===1?'':'s')+' na seleção.';
 }));
 const dialog=document.querySelector('#case-dialog');
 const escapeHTML=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+function renderProjectLink(link,project){
+ const repository=link.url.startsWith('https://github.com/');
+ const label=window.portfolioTranslate(repository?'Repositório no GitHub':'Abrir site do projeto');
+ const accessible=label+' — '+window.portfolioTranslate(project);
+ const icon=repository?"<img src=\"assets/link-icons/github.svg\" alt=\"\" width=\"21\" height=\"21\">":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"21\" height=\"21\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M3 12h18M12 3a18 18 0 0 1 0 18 18 18 0 0 1 0-18Z\"/></svg>";
+ return '<a class="project-icon" href="'+escapeHTML(link.url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+escapeHTML(accessible)+'" title="'+escapeHTML(accessible)+'">'+icon+'</a>';
+}
 let caseTrigger=null;
 document.querySelectorAll('[data-case]').forEach(button=>button.addEventListener('click',()=>{
  caseTrigger=button;const item=cases[button.dataset.case];
- document.querySelector('#case-content').innerHTML=`<article class="case-inner"><span class="case-number">${escapeHTML(item.number)}</span><h2 id="case-title">${escapeHTML(item.title)}</h2><p class="deck">${escapeHTML(item.deck)}</p><div class="tags">${item.tags.map(tag=>'<span>'+escapeHTML(tag)+'</span>').join('')}</div><div class="case-detail-grid"><section><h3>O desafio</h3><p>${escapeHTML(item.challenge)}</p></section><section><h3>Minha contribuição</h3><p>${escapeHTML(item.contribution)}</p></section></div><section class="case-full"><h3>O que foi construído</h3><ul>${item.features.map(feature=>'<li>'+escapeHTML(feature)+'</li>').join('')}</ul></section><div class="case-flow" aria-label="Fluxo do projeto">${item.flow.map((step,i)=>(i?'<i aria-hidden="true">→</i>':'')+'<span>'+escapeHTML(step)+'</span>').join('')}</div><section class="case-full"><h3>Uma decisão de projeto</h3><p>${escapeHTML(item.decision)}</p></section><p class="case-note">${escapeHTML(item.note)}</p>${item.links.length?'<div class="case-links">'+item.links.map(link=>'<a href="'+escapeHTML(link.url)+'" target="_blank" rel="noopener noreferrer">'+escapeHTML(link.label)+' ↗</a>').join('')+'</div>':''}</article>`;
+ document.querySelector('#case-content').innerHTML=`<article class="case-inner"><span class="case-number">${escapeHTML(item.number)}</span><h2 id="case-title">${escapeHTML(item.title)}</h2><p class="deck">${escapeHTML(item.deck)}</p><div class="tags">${item.tags.map(tag=>'<span>'+escapeHTML(tag)+'</span>').join('')}</div><div class="case-detail-grid"><section><h3>O desafio</h3><p>${escapeHTML(item.challenge)}</p></section><section><h3>Minha contribuição</h3><p>${escapeHTML(item.contribution)}</p></section></div><section class="case-full"><h3>O que foi construído</h3><ul>${item.features.map(feature=>'<li>'+escapeHTML(feature)+'</li>').join('')}</ul></section><div class="case-flow" aria-label="Fluxo do projeto">${item.flow.map((step,i)=>(i?'<i aria-hidden="true">→</i>':'')+'<span>'+escapeHTML(step)+'</span>').join('')}</div><section class="case-full"><h3>Uma decisão de projeto</h3><p>${escapeHTML(item.decision)}</p></section><p class="case-note">${escapeHTML(item.note)}</p>${item.links.length?'<div class="case-links">'+item.links.map(link=>renderProjectLink(link,item.title)).join('')+'</div>':''}</article>`;
+ window.translatePortfolio(document.querySelector('#case-content'));
  dialog.showModal();dialog.scrollTop=0;document.body.classList.add('modal-open');
 }));
 document.querySelector('.close-dialog').addEventListener('click',()=>dialog.close());
@@ -178,8 +177,81 @@ dialog.addEventListener('click',event=>{if(event.target!==dialog)return;const r=
 dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open');caseTrigger?.focus();});
 const menuButton=document.querySelector('.menu-button');
 const navigation=document.querySelector('#nav');
-function closeMenu(){navigation.classList.remove('open');menuButton.setAttribute('aria-expanded','false');menuButton.setAttribute('aria-label','Abrir menu');}
-menuButton.addEventListener('click',()=>{const open=menuButton.getAttribute('aria-expanded')!=='true';menuButton.setAttribute('aria-expanded',String(open));menuButton.setAttribute('aria-label',open?'Fechar menu':'Abrir menu');navigation.classList.toggle('open',open);});
+function closeMenu(){navigation.classList.remove('open');menuButton.setAttribute('aria-expanded','false');menuButton.setAttribute('aria-label',window.portfolioTranslate('Abrir menu'));}
+menuButton.addEventListener('click',()=>{const open=menuButton.getAttribute('aria-expanded')!=='true';menuButton.setAttribute('aria-expanded',String(open));menuButton.setAttribute('aria-label',window.portfolioTranslate(open?'Fechar menu':'Abrir menu'));navigation.classList.toggle('open',open);});
 navigation.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
 document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu();});
 document.querySelector('#year').textContent=new Date().getFullYear();
+
+window.translatePortfolio(document);
+
+// A compact stage keeps one certificate's details beside two upcoming previews.
+const carousel=document.querySelector('.certificate-carousel');
+const certificateTrack=document.querySelector('#certificate-track');
+const certificateSlides=[...certificateTrack.querySelectorAll('.certificate-slide')];
+const rotationButton=document.querySelector('#cert-toggle');
+const motionPreference=window.matchMedia('(prefers-reduced-motion: reduce)');
+let certificateIndex=0;
+let rotationPaused=motionPreference.matches;
+let carouselHovered=false;
+let rotationTimer=null;
+function updateCertificatePosition(index,announce=false){
+ certificateIndex=(index+certificateSlides.length)%certificateSlides.length;
+ document.querySelector('#certificate-position').textContent=String(certificateIndex+1).padStart(2,'0')+' / '+String(certificateSlides.length).padStart(2,'0');
+ certificateSlides.forEach((slide,i)=>{
+  const offset=(i-certificateIndex+certificateSlides.length)%certificateSlides.length;
+  slide.hidden=offset>2;
+  slide.inert=offset>2;
+  slide.classList.toggle('is-active',offset===0);
+  slide.classList.toggle('is-preview-one',offset===1);
+  slide.classList.toggle('is-preview-two',offset===2);
+ });
+ const selected=certificateSlides[certificateIndex];
+ certificateTrack.style.setProperty('--certificate-image','url("'+selected.querySelector('img').getAttribute('src')+'")');
+ if(announce)document.querySelector('#certificate-announcement').textContent=window.portfolioTranslate('Certificado')+' '+(certificateIndex+1)+' / '+certificateSlides.length+': '+selected.querySelector('h3').textContent;
+}
+function moveCertificate(direction,announce=true){updateCertificatePosition(certificateIndex+direction,announce);}
+function refreshCertificateRotation(){
+ if(rotationTimer!==null){clearInterval(rotationTimer);rotationTimer=null;}
+ rotationButton.textContent=window.portfolioTranslate(rotationPaused?'Reproduzir':'Pausar');
+ rotationButton.setAttribute('aria-pressed',String(rotationPaused));
+ if(!rotationPaused&&!carouselHovered&&!carousel.contains(document.activeElement)&&!document.hidden){rotationTimer=setInterval(()=>moveCertificate(1,false),6500);}
+}
+document.querySelector('#cert-prev').addEventListener('click',()=>moveCertificate(-1));
+document.querySelector('#cert-next').addEventListener('click',()=>moveCertificate(1));
+rotationButton.addEventListener('click',()=>{rotationPaused=!rotationPaused;refreshCertificateRotation();});
+carousel.addEventListener('keydown',event=>{
+ if(event.target.closest('a'))return;
+ if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();moveCertificate(event.key==='ArrowRight'?1:-1);}
+});
+carousel.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse'){carouselHovered=true;refreshCertificateRotation();}});
+carousel.addEventListener('pointerleave',event=>{if(event.pointerType==='mouse'){carouselHovered=false;refreshCertificateRotation();}});
+carousel.addEventListener('focusin',refreshCertificateRotation);
+carousel.addEventListener('focusout',()=>setTimeout(refreshCertificateRotation,0));
+document.addEventListener('visibilitychange',refreshCertificateRotation);
+motionPreference.addEventListener('change',()=>{if(motionPreference.matches)rotationPaused=true;refreshCertificateRotation();});
+let swipeStart=null;
+let suppressSwipeClick=false;
+certificateTrack.addEventListener('pointerdown',event=>{if(event.pointerType==='touch')swipeStart=event.clientX;});
+certificateTrack.addEventListener('pointercancel',()=>{swipeStart=null;});
+certificateTrack.addEventListener('pointerup',event=>{
+ if(swipeStart===null)return;
+ const distance=event.clientX-swipeStart;swipeStart=null;
+ if(Math.abs(distance)>45){moveCertificate(distance<0?1:-1);suppressSwipeClick=true;setTimeout(()=>{suppressSwipeClick=false;},400);}
+});
+certificateTrack.addEventListener('click',event=>{if(suppressSwipeClick){event.preventDefault();event.stopPropagation();suppressSwipeClick=false;}},true);
+updateCertificatePosition(0);
+refreshCertificateRotation();
+
+const toolBelt=document.querySelector('.tool-belt');
+const toolsToggle=document.querySelector('#tools-toggle');
+let toolsPaused=false;
+function renderToolsPause(){
+ toolBelt.classList.toggle('is-paused',toolsPaused);
+ toolsToggle.setAttribute('aria-pressed',String(toolsPaused));
+ toolsToggle.setAttribute('aria-label',window.portfolioTranslate(toolsPaused?'Reproduzir faixa de ferramentas':'Pausar faixa de ferramentas'));
+ toolsToggle.textContent=toolsPaused?'▶':'Ⅱ';
+}
+toolsToggle.addEventListener('click',()=>{toolsPaused=!toolsPaused;renderToolsPause();});
+
+renderToolsPause();

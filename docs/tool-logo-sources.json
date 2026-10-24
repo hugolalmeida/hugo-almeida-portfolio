@@ -1,0 +1,55 @@
+{
+  "source": "https://github.com/devicons/devicon",
+  "commit": "6a37858047b0e8d9c9c0e68f4a071fc410652e89",
+  "assets": [
+    {
+      "name": "python",
+      "url": "https://raw.githubusercontent.com/devicons/devicon/6a37858047b0e8d9c9c0e68f4a071fc410652e89/icons/python/python-original.svg",
+      "file": "assets/tool-logos/python.svg"
+    },
+    {
+      "name": "javascript",
+      "url": "https://raw.githubusercontent.com/devicons/devicon/6a37858047b0e8d9c9c0e68f4a071fc410652e89/icons/javascript/javascript-original.svg",
+      "file": "assets/tool-logos/javascript.svg"
+    },
+    {
+      "name": "typescript",
+      "url": "https://raw.githubusercontent.com/devicons/devicon/6a37858047b0e8d9c9c0e68f4a071fc410652e89/icons/typescript/typescript-original.svg",
+      "file": "assets/tool-logos/typescript.svg"
+    },
+    {
+      "name": "react",
+      "url": "https://raw.githubusercontent.com/devicons/devicon/6a37858047b0e8d9c9c0e68f4a071fc410652e89/icons/react/react-original.svg",
+      "file": "assets/tool-logos/react.svg"
+    },
+    {
+      "name": "nextjs",
+      "url": "https://raw.githubusercontent.com/devicons/devicon/6a37858047b0e8d9c9c0e68f4a071fc410652e89/icons/nextjs/nextjs-original.svg",
+      "file": "assets/tool-logos/nextjs.svg"
+    },
+    {
+      "name": "fastapi",
+      "url": "https://raw.githubusercontent.com/devicons/devicon/6a37858047b0e8d9c9c0e68f4a071fc410652e89/icons/fastapi/fastapi-original.svg",
+      "file": "assets/tool-logos/fastapi.svg"
+    },
+    {
+      "name": "postgresql",
+      "url": "https://raw.githubusercontent.com/devicons/devicon/6a37858047b0e8d9c9c0e68f4a071fc410652e89/icons/postgresql/postgresql-original.svg",
+      "file": "assets/tool-logos/postgresql.svg"
+    },
+    {
+      "name": "docker",
+      "url": "https://raw.githubusercontent.com/devicons/devicon/6a37858047b0e8d9c9c0e68f4a071fc410652e89/icons/docker/docker-original.svg",
+      "file": "assets/tool-logos/docker.svg"
+    },
+    {
+      "name": "windows11",
+      "url": "https://raw.githubusercontent.com/devicons/devicon/6a37858047b0e8d9c9c0e68f4a071fc410652e89/icons/windows11/windows11-original.svg",
+      "file": "assets/tool-logos/windows11.svg"
+    }
+  ],
+  "project_link_icon": {
+    "file": "assets/link-icons/github.svg",
+    "url": "https://raw.githubusercontent.com/devicons/devicon/6a37858047b0e8d9c9c0e68f4a071fc410652e89/icons/github/github-original.svg"
+  }
+}
