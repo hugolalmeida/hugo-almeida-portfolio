@@ -5,7 +5,7 @@ const previous = document.querySelector('#previous');
 const next = document.querySelector('#next');
 const horizontal = matchMedia('(min-width:901px) and (min-height:601px)');
 const motionQuery = new URLSearchParams(location.search).get('motion');
-// This experimental version starts with motion enabled by the author's choice.
+// Motion starts enabled by the author's choice; visitors can pause it.
 let motionPreference = ['on', 'off'].includes(motionQuery) ? motionQuery : window.horizontalPreferences?.motion || 'on';
 const t = value => window.horizontalPreferences?.translate(value) || value;
 const reduced = {get matches() {return motionPreference === 'off';}};
@@ -207,7 +207,7 @@ document.querySelectorAll('[data-screen]').forEach(button => button.addEventList
   const shot = shots[button.dataset.screen];
   document.querySelectorAll('[data-screen]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
   const image = document.querySelector('#operation-image');
-  image.src = '../assets/' + shot.file;
+  image.src = 'assets/' + shot.file;
   image.alt = t(shot.alt);
   if (!reduced.matches) image.animate?.([{opacity: 0.25, transform: 'translateY(6px)'}, {opacity: 1, transform: 'translateY(0)'}], {duration: 350, easing: 'ease-out'});
   document.querySelector('#screen-full').href = image.src;

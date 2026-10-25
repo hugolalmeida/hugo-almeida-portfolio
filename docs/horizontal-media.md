@@ -11,7 +11,7 @@ Coloque os arquivos reais em `dist/assets/projects/` e adicione registros à lis
 ```js
 {
   type: 'image',
-  src: '../assets/projects/plid-organizacao.png',
+  src: 'assets/projects/plid-organizacao.png',
   label: 'Organização',
   alt: 'Descrição concreta da tela fornecida',
   caption: 'O que esta tela mostra e por que ela importa.'
@@ -22,4 +22,4 @@ Vídeos usam `type: 'video'`, um arquivo MP4 ou WebM em `src` e uma imagem de ca
 
 Adicione as traduções de `label`, `alt` e `caption` a `dist/horizontal/english.js`. Execute `npm run check`: a verificação confirma que todas as mídias e capas configuradas existem e que cada entrada tem descrição e legenda.
 
-Para revisar, abra `/horizontal/`, navegue até os projetos e abra o estudo de caso. Confira a galeria em PT/EN e nos temas claro/escuro. O site principal permanece independente.
+Para revisar, abra `/`, navegue até os projetos e abra o estudo de caso. Confira a galeria em PT/EN e nos temas claro/escuro. A versão horizontal agora é a página principal; `/horizontal/` redireciona para ela e a anterior permanece em `/anterior/`.

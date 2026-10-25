@@ -1,4 +1,4 @@
-// Apply the experimental palette before CSS, without changing the main site.
+// Apply the selected palette before CSS; keep existing visitor preferences.
 (() => {
   const storageKey = 'horizontal-preferences';
   let saved = {};
@@ -37,8 +37,7 @@
     }
     for (const {element, attribute, original} of attributeRecords) element.setAttribute(attribute, translate(original));
     document.querySelectorAll('[data-language]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.language === state.lang)));
-    document.querySelector('#resume-link').href = '../assets/resume/hugo-almeida-' + state.lang + '.pdf';
-    document.querySelector('.compare').href = '../?lang=' + state.lang;
+    document.querySelector('#resume-link').href = 'assets/resume/hugo-almeida-' + state.lang + '.pdf';
     applyTheme();
     window.dispatchEvent(new Event('horizontal-language-change'));
   }
@@ -53,7 +52,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     const walker = document.createTreeWalker(document, NodeFilter.SHOW_TEXT, {acceptNode: node => ['SCRIPT', 'STYLE'].includes(node.parentElement?.tagName) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT});
     for (let node; (node = walker.nextNode());) textRecords.push({node, original: node.textContent});
-    document.querySelectorAll('[aria-label],[alt],[title],[data-label],meta[name="description"]').forEach(element => {
+    document.querySelectorAll('[aria-label],[alt],[title],[data-label],meta[name="description"],meta[property="og:title"],meta[property="og:description"]').forEach(element => {
       for (const attribute of ['aria-label', 'alt', 'title', 'data-label', 'content']) {
         if (element.hasAttribute(attribute)) attributeRecords.push({element, attribute, original: element.getAttribute(attribute)});
       }

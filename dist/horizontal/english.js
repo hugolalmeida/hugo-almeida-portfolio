@@ -1,4 +1,4 @@
-// Portuguese-to-English copy for the experimental portfolio.
+// Portuguese-to-English copy for the portfolio.
 window.horizontalEnglish = {
   "Ativar tema claro": "Switch to light theme",
   "Ativar tema escuro": "Switch to dark theme",
@@ -514,5 +514,6 @@ window.horizontalEnglish = {
   "A escolha de frutas faz parte do mesmo fluxo de criação, mantendo as opções do personagem entre as etapas.": "Choosing a Devil Fruit is part of the same creation flow, retaining the character’s choices between steps.",
   "Resultado com ficha do personagem, poder calculado e classificação de nível": "Result showing the character sheet, calculated power and level classification",
   "A ficha reúne as escolhas feitas e apresenta o poder calculado a partir dos itens selecionados, além da classificação do personagem.": "The sheet brings together the choices and shows power calculated from the selected items, along with the character’s classification.",
-  "Capturas do projeto original fornecidas pelo autor.": "Screenshots of the original project provided by the author."
+  "Capturas do projeto original fornecidas pelo autor.": "Screenshots of the original project provided by the author.",
+  "Desenvolvimento web, automações e integrações para simplificar rotinas. Conheça Libby e outros projetos de Hugo L. Almeida.": "Web development, automation and integrations that simplify everyday work. Explore Libby and other projects by Hugo L. Almeida."
 };
