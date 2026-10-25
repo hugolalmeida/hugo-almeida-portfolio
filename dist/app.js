@@ -140,16 +140,17 @@ const cases = {
   }
 };
 const shots = {
- dashboard: ['assets/libby-dashboard-metrics.png', 'Dashboard da Libby com indicadores de execução'],
- executions: ['assets/libby-executions-redacted.png', 'Histórico de execuções da Libby com identificadores e contatos ocultados'],
- catalog: ['assets/libby-catalog-metrics.png', 'Catálogo da Libby organizado por área e com contagens de automações']
+ dashboard: ['assets/libby-dashboard-metrics.png', 'Dashboard da Libby com indicadores de execução', 'Uma visão da atividade e das falhas no momento da captura. Os números exibidos são históricos.'],
+ executions: ['assets/libby-executions-redacted.png', 'Histórico de execuções da Libby com identificadores e contatos ocultados', 'O histórico reúne estados de execução e registros. Os contatos e identificadores desta captura foram ocultados.'],
+ catalog: ['assets/libby-catalog-metrics.png', 'Catálogo da Libby organizado por área e com contagens de automações', 'Automações de diferentes áreas e ambientes reunidas no mesmo catálogo.']
 };
 document.querySelectorAll('[data-shot]').forEach(button=>button.addEventListener('click',()=>{
- const [src,alt]=shots[button.dataset.shot];
+ const [src,alt,caption]=shots[button.dataset.shot];
  document.querySelectorAll('[data-shot]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
  document.querySelector('#libby-shot').src=src;
  document.querySelector('#libby-shot').alt=window.portfolioTranslate(alt);
  document.querySelector('#shot-link').href=src;
+ document.querySelector('#shot-caption').textContent=window.portfolioTranslate(caption);
 }));
 document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{
  document.querySelectorAll('[data-filter]').forEach(filter=>{const active=filter===button;filter.classList.toggle('selected',active);filter.setAttribute('aria-pressed',String(active));});
@@ -184,6 +185,18 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu();
 document.querySelector('#year').textContent=new Date().getFullYear();
 
 window.translatePortfolio(document);
+
+const themeToggle=document.querySelector('#theme-toggle');
+function renderThemeToggle(){
+ const dark=document.documentElement.dataset.theme==='dark';
+ const label=window.portfolioTranslate(dark?'Ativar tema claro':'Ativar tema escuro');
+ themeToggle.setAttribute('aria-pressed',String(dark));
+ themeToggle.setAttribute('aria-label',label);
+ themeToggle.title=label;
+}
+themeToggle.addEventListener('click',()=>window.portfolioTheme.toggle());
+window.addEventListener('portfolio-theme-change',renderThemeToggle);
+renderThemeToggle();
 
 // A compact stage keeps one certificate's details beside two upcoming previews.
 const carousel=document.querySelector('.certificate-carousel');

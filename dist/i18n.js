@@ -1,6 +1,23 @@
 // The Portuguese content remains readable without JavaScript. English is selected
 // by a shareable query parameter and remembered only in this browser.
 const english = {
+ 'Ativar tema claro':'Switch to light theme',
+ 'Ativar tema escuro':'Switch to dark theme',
+ 'De automações individuais':'From individual automations',
+ 'a uma biblioteca de trabalho.':'to a library for everyday work.',
+ 'MINHA PARTICIPAÇÃO':'MY CONTRIBUTION',
+ 'Desenvolvimento e manutenção da plataforma e das automações.':'Development and maintenance of the platform and its automations.',
+ 'Explorar as etapas da Libby':'Explore Libby’s workflow',
+ 'Encontrar a rotina':'Find a workflow',
+ 'O catálogo reúne as automações.':'The catalog brings the automations together.',
+ 'Acompanhar a execução':'Track execution',
+ 'Histórico, estados e registros.':'History, statuses and logs.',
+ 'Olhar para a operação':'See the operation',
+ 'Atividade e falhas em uma visão geral.':'An overview of activity and failures.',
+ 'Automações de diferentes áreas e ambientes reunidas no mesmo catálogo.':'Automations across teams and environments brought together in one catalog.',
+ 'Uma visão da atividade e das falhas no momento da captura. Os números exibidos são históricos.':'A view of activity and failures when the screenshot was taken. The numbers shown are historical.',
+ 'O histórico reúne estados de execução e registros. Os contatos e identificadores desta captura foram ocultados.':'The history brings execution statuses and logs together. Contact details and identifiers in this screenshot were redacted.',
+ 'Capturas editadas para apresentação. Indicadores históricos; contatos e identificadores ocultados no histórico. Clique para ampliar.':'Screenshots edited for presentation. Historical metrics; contact details and identifiers are redacted in the history. Click to enlarge.',
  'Da rotina contábil':'From accounting routines',
  'à':'to',
  'automação.':'automation.',

@@ -4,6 +4,12 @@ Portfólio de atuação profissional em desenvolvimento web, automação de proc
 
 Abertura com foco em aplicações e automações para simplificar rotinas contábeis. Cartões e estudos de caso usam ícones acessíveis para repositórios e sites disponíveis. O endereço público da PLID permanece `https://plid-platform.vercel.app/`; o autor confirmou que abriu após aguardar o carregamento.
 
+## Exploração visual
+
+`/conceito/` contém uma proposta separada para a abertura e o caso da Libby, sem substituir o portfólio principal. A direção editorial usa a foto do autor, sua história com o AutoMessenger e telas editadas da Libby. A proposta é em português e não é indexável. O botão de comparação retorna à versão completa atual; os botões da Libby alternam entre catálogo, execuções e dashboard. Nenhuma automação real é executada pela página.
+
+O autor preferiu manter o visual do portfólio principal e aproveitar a apresentação da Libby: contribuição explícita e navegação por encontrar a rotina, acompanhar a execução e olhar a operação. Essa adaptação está no bloco `#libby` do site principal, com legendas específicas por tela e tradução para inglês.
+
 ## Conteúdo
 
 - Libby: biblioteca de automações para DP, Fiscal e outras áreas, incluindo rotinas no Domínio, Gestta e portal Onvio. Código privado.
@@ -20,6 +26,10 @@ Abertura com foco em aplicações e automações para simplificar rotinas contá
 ## Idiomas
 
 O seletor PT/EN traduz a página, metadados, textos acessíveis e estudos de caso. `?lang=pt` e `?lang=en` permitem compartilhar cada idioma. A preferência é lembrada no navegador, com português como padrão. As capturas do produto continuam em português.
+
+## Tema
+
+O botão de sol/lua no cabeçalho alterna entre claro e escuro. A preferência é salva no navegador e continua ao trocar de idioma. Sem uma escolha salva, o site acompanha o tema do sistema. O tema é aplicado antes dos estilos para evitar um clarão ao carregar. As capturas e os documentos mantêm suas cores originais. A proposta separada em `/conceito/` conserva sua direção visual própria.
 
 ## Imagens e dados
 
@@ -49,4 +59,12 @@ Abra http://localhost:4173. O código estático fica em `dist/`; `npm run build`
 - `dist/assets/resume/`: currículos originais em português e inglês.
 - `scripts/`: servidor local e verificações.
 
-Hospedagem configurada para Vercel. Esta revisão foi feita no checkout local, sem implantação.
+## Publicar no GitHub Pages
+
+O workflow `.github/workflows/deploy-pages.yml` valida os arquivos e publica a pasta `dist/` a cada push na branch `main`. Não há dependências npm para instalar nem credenciais adicionais para configurar.
+
+No repositório, abra **Settings → Pages → Build and deployment → Source** e selecione **GitHub Actions**. Depois acompanhe o workflow **Publicar portfolio no GitHub Pages** na aba **Actions**. Se o primeiro workflow tiver sido executado antes de ativar o Pages, use **Re-run all jobs** ou **Run workflow** após ativar.
+
+Endereço esperado após uma publicação bem-sucedida: https://hugolalmeida.github.io/hugo-almeida-portfolio/
+
+Os links de arquivos usam caminhos relativos para funcionar na subpasta do repositório. O tema, os idiomas, os certificados e os currículos não dependem de servidor de aplicação. A configuração anterior `vercel.json` permanece disponível como alternativa de hospedagem.
