@@ -131,7 +131,10 @@ function goTo(index, focus = true) {
   if (focus) scene.focus({preventScroll: true});
   const behavior = reduced.matches ? 'instant' : 'smooth';
   if (horizontal.matches) gallery.scrollTo({left: scene.offsetLeft, behavior});
-  else window.scrollTo({top: scrollY + scene.getBoundingClientRect().top, behavior});
+  else {
+    const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
+    window.scrollTo({top: Math.max(0, scrollY + scene.getBoundingClientRect().top - headerHeight), behavior});
+  }
   wheelLockedUntil = performance.now() + (reduced.matches ? 300 : 850);
 }
 
