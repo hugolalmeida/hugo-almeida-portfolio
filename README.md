@@ -63,6 +63,8 @@ Abra http://localhost:4173. O código estático fica em `dist/`; `npm run build`
 
 O workflow `.github/workflows/deploy-pages.yml` valida os arquivos e publica a pasta `dist/` a cada push na branch `main`. Não há dependências npm para instalar nem credenciais adicionais para configurar.
 
+Depois do deploy, o workflow verifica a página inicial e os arquivos de CSS e JavaScript. Ele identifica uma eventual publicação antiga do README na raiz e só termina com sucesso quando o portfólio esperado estiver acessível.
+
 No repositório, abra **Settings → Pages → Build and deployment → Source** e selecione **GitHub Actions**. Depois acompanhe o workflow **Publicar portfolio no GitHub Pages** na aba **Actions**. Se o primeiro workflow tiver sido executado antes de ativar o Pages, use **Re-run all jobs** ou **Run workflow** após ativar.
 
 Endereço esperado após uma publicação bem-sucedida: https://hugolalmeida.github.io/hugo-almeida-portfolio/
