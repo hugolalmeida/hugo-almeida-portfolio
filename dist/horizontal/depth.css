@@ -1,0 +1,23 @@
+/* Decorative process network, with three depth planes and no external runtime. */
+.network-stage{position:absolute;right:-8%;top:-12%;width:74%;height:124%;pointer-events:none;z-index:-1;perspective:1000px;opacity:var(--network-opacity,.8);mask-image:linear-gradient(90deg,transparent 0%,#000 48%,#000 95%,transparent);--network-line:#9c9fff;--network-accent:#c3a0ff;--network-fill:#49377822}
+.network-sculpture{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(calc(12deg + var(--pointer-y,0deg))) rotateY(calc(-18deg + var(--pointer-x,0deg))) rotateZ(var(--network-roll,-9deg))}
+.network-layer{position:absolute;inset:0;width:100%;height:100%;overflow:visible;fill:none;stroke:var(--network-line);stroke-width:1;vector-effect:non-scaling-stroke}
+.network-rear{transform:translateZ(-90px);opacity:.3;stroke-dasharray:3 8}
+.network-middle{transform:translateZ(0);opacity:.6}
+.network-front{transform:translateZ(85px);filter:drop-shadow(0 0 7px #9584ff30)}
+.network-plane{fill:var(--network-fill);stroke:var(--network-accent)}
+.network-node{fill:var(--network-accent);stroke:none}
+.network-dot{fill:var(--network-line);stroke:none}
+.network-core{stroke:var(--network-accent);stroke-width:1.5}
+.network-core-fill{fill:var(--network-fill)}
+.opening:has(.network-stage):before{opacity:.25}
+html[data-theme=light] .network-stage{--network-line:#587ac2;--network-accent:#8057bb;--network-fill:#9681c311;opacity:var(--network-opacity,.75)}
+.scene:where(:not(.opening)) .network-stage{--network-opacity:.24;right:-20%;width:68%;top:-8%}
+.operation .network-stage{right:-26%;--network-roll:12deg}
+.projects .network-stage{--network-roll:-20deg;top:4%}
+.about .network-stage{--network-opacity:.18;--network-roll:-24deg;right:-24%}
+.learning .network-stage{--network-opacity:.16;--network-roll:8deg}
+.trajectory .network-stage{--network-opacity:.18;right:-27%;--network-roll:18deg}
+.contact .network-stage{--network-opacity:.45;right:-3%;width:65%;--network-roll:-14deg}
+@media(max-width:900px),(max-height:600px){.scene .network-stage{right:-30%;width:110%;opacity:calc(var(--network-opacity,.8)*.45);mask-image:linear-gradient(90deg,transparent 0%,#000 65%)}.network-sculpture{transform:rotateX(12deg) rotateY(-18deg) rotateZ(var(--network-roll,-9deg))}}
+html.motion-paused .network-sculpture{transform:rotateX(12deg) rotateY(-18deg) rotateZ(var(--network-roll,-9deg))}
