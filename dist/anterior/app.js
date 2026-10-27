@@ -59,8 +59,8 @@ const cases = {
     "note": "A arte apresentada no portfólio é ilustrativa. Não contém dados de leads nem reproduz materiais internos.",
     "links": [
       {
-        "label": "Conhecer o repositório",
-        "url": "https://github.com/Tsug07/canella_ebook_libby"
+        "label": "Explorar biblioteca",
+        "url": "https://ebook.canellahub.com.br/"
       }
     ]
   },

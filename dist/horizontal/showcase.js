@@ -113,7 +113,7 @@
         button.setAttribute('aria-pressed', String(i === active));
       });
       buttons.setAttribute('aria-label', t('Selecionar imagem do projeto'));
-      note.textContent = key === 'libby' ? t('Telas reais da Libby, editadas para apresentação. Indicadores históricos.') : key === 'first-site' ? t('Capturas do projeto original fornecidas pelo autor.') : '';
+      note.textContent = key === 'libby' ? t('Captura da demo pública com dados fictícios e telas internas editadas para apresentação. Indicadores históricos no dashboard.') : key === 'first-site' ? t('Capturas do projeto original fornecidas pelo autor.') : '';
       note.hidden = !note.textContent;
     }
     items.forEach((item, i) => {

@@ -21,7 +21,7 @@ Idioma, tema e movimento são salvos na chave `horizontal-preferences`, preserva
 ## Conteúdo e imagens
 
 - Libby: biblioteca de automações para DP, Fiscal e outras áreas, incluindo Domínio, Gestta e Onvio. Código privado. Quatro exemplos em “Automações na prática” mostram problema, entrada, funcionamento, entrega e decisão de implementação. A seleção foi fundamentada na leitura dos módulos locais, sem executá-los; veja `docs/libby-automation-selection.md`.
-- Biblioteca de Ebooks, DisBot Canella e PLID: estudos de caso com links de GitHub e site disponíveis. A PLID está em evolução; seu endereço é `https://plid-platform.vercel.app/`.
+- Biblioteca de Ebooks: estudo de caso com captura da página pública e link para https://ebook.canellahub.com.br/; repositório privado. DisBot Canella e PLID: estudos de caso com links de GitHub e site disponíveis. A PLID está em evolução; seu endereço é `https://plid-platform.vercel.app/`.
 - Sobre: transição de Direito para tecnologia pelo BYU–Pathway, graduação em andamento, primeiro site de One Piece, interesses pessoais e objetivo profissional confirmados pelo autor.
 - Build Character: apresentação do primeiro site com aprendizados em CSS, JSON, arrays e criação de personagens. Seis capturas originais fornecidas pelo autor estão em `dist/assets/projects/build-character/`; as duas imagens repetidas do envio foram omitidas.
 - Ferramentas: faixa contínua com dez ícones locais, sob o controle geral de efeitos. Nove logotipos são do Devicon, com licença em `dist/assets/tool-logos/LICENSE.devicon.txt` e proveniência em `docs/tool-logo-sources.json`. O ícone de APIs e integrações é um diagrama genérico local. O GitHub usa a mesma versão do Devicon.

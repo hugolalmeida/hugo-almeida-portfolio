@@ -200,7 +200,7 @@ document.querySelectorAll('.detail-dialog').forEach(dialog => {
 });
 
 const shots = {
-  executions: {file: 'libby-executions-redacted.png', label: 'EXECUÇÕES', alt: 'Histórico de execuções da Libby com contatos e identificadores ocultados', caption: 'Histórico, estados e registros. Contatos e identificadores foram ocultados nesta captura.'},
+  executions: {file: 'libby-demo-executions.png', label: 'EXECUÇÕES', alt: 'Histórico de execuções da demo pública da Libby com dados fictícios', caption: 'Demo pública da Libby: histórico, estados e registros com dados fictícios.'},
   dashboard: {file: 'libby-dashboard-metrics.png', label: 'DASHBOARD', alt: 'Dashboard da Libby com os indicadores históricos do momento da captura', caption: 'Uma visão da atividade e das falhas. Os números são um registro histórico do momento da captura.'}
 };
 document.querySelectorAll('[data-screen]').forEach(button => button.addEventListener('click', () => {

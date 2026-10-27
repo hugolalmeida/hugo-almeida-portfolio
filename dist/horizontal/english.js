@@ -1,5 +1,16 @@
 // Portuguese-to-English copy for the portfolio.
 window.horizontalEnglish = {
+  "Página inicial da Biblioteca Canella & Santos com acesso gratuito e estante em montagem": "Home page of the Canella & Santos Library with free access and a bookshelf under construction",
+  "Página pública da biblioteca, com acesso gratuito e perfil de estudante. A estante estava em montagem no momento da captura.": "Public library page with free access and a student profile. The bookshelf was under construction when the screenshot was taken.",
+  "Site da Biblioteca de Ebooks": "Ebook Library website",
+  "Explorar biblioteca": "Explore the library",
+  "Histórico de execuções da demo pública da Libby com dados fictícios": "Execution history in the public Libby demo with fictional data",
+  "Demo pública da Libby: histórico, estados e registros com dados fictícios.": "Public Libby demo: history, statuses and logs with fictional data.",
+  "Aplicação interna em uso profissional, com demo pública para explorar a interface usando dados fictícios. Os indicadores do dashboard nesta apresentação são históricos. O código da central permanece privado.": "Internal application used at work, with a public demo to explore the interface using fictional data. The dashboard metrics in this presentation are historical. The application code remains private.",
+  "Captura da demo pública com dados fictícios e telas internas editadas para apresentação. Indicadores históricos no dashboard.": "Public demo screenshot with fictional data and internal screens edited for presentation. Historical dashboard metrics.",
+  "DEMO PÚBLICA COM DADOS FICTÍCIOS · CÓDIGO PRIVADO": "PUBLIC DEMO WITH FICTIONAL DATA · PRIVATE CODE",
+  "Explorar demo ↗": "Explore demo ↗",
+  "Explorar demo da Libby": "Explore the Libby demo",
   "Ativar tema claro": "Switch to light theme",
   "Ativar tema escuro": "Switch to dark theme",
   "De automações individuais": "From individual automations",

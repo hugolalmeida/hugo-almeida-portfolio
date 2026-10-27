@@ -3,7 +3,7 @@
 window.horizontalProjectMedia = {
   libby: [
     {type: 'image', src: 'assets/libby-catalog-metrics.png', label: 'Catálogo', alt: 'Catálogo real da Libby com automações organizadas em DomBots e VM, Web e Ferramentas', caption: 'Automações de diferentes áreas e ambientes reunidas no mesmo catálogo.'},
-    {type: 'image', src: 'assets/libby-executions-redacted.png', label: 'Execuções', alt: 'Histórico de execuções da Libby com contatos e identificadores ocultados', caption: 'Histórico, estados e registros. Contatos e identificadores foram ocultados nesta captura.'},
+    {type: 'image', src: 'assets/libby-demo-executions.png', label: 'Execuções', alt: 'Histórico de execuções da demo pública da Libby com dados fictícios', caption: 'Demo pública da Libby: histórico, estados e registros com dados fictícios.'},
     {type: 'image', src: 'assets/libby-dashboard-metrics.png', label: 'Dashboard', alt: 'Dashboard da Libby com os indicadores históricos do momento da captura', caption: 'Uma visão da atividade e das falhas. Os números são um registro histórico do momento da captura.'}
   ],
   "first-site": [
@@ -50,7 +50,9 @@ window.horizontalProjectMedia = {
     "caption": "A ficha reúne as escolhas feitas e apresenta o poder calculado a partir dos itens selecionados, além da classificação do personagem."
   }
 ],
-  ebooks: [],
+  ebooks: [
+    {"type":"image","src":"assets/projects/canella-ebooks-home.png","label":"Página inicial","alt":"Página inicial da Biblioteca Canella & Santos com acesso gratuito e estante em montagem","caption":"Página pública da biblioteca, com acesso gratuito e perfil de estudante. A estante estava em montagem no momento da captura."}
+  ],
   disbot: [],
   plid: []
 };
