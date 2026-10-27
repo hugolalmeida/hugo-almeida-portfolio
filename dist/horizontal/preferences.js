@@ -23,7 +23,7 @@
     const button = document.querySelector('#theme-toggle');
     if (button) {
       const label = translate(state.theme === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro');
-      button.textContent = state.theme === 'dark' ? '☀' : '☾';
+      button.querySelector('use').setAttribute('href', 'assets/ui-icons.svg#' + (state.theme === 'dark' ? 'sun' : 'moon'));
       button.setAttribute('aria-label', label);
       button.title = label;
       button.setAttribute('aria-pressed', String(state.theme === 'light'));

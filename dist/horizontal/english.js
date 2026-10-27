@@ -528,3 +528,7 @@ window.horizontalEnglish = {
   "Capturas do projeto original fornecidas pelo autor.": "Screenshots of the original project provided by the author.",
   "Desenvolvimento web, automações e integrações para simplificar rotinas. Conheça Libby e outros projetos de Hugo L. Almeida.": "Web development, automation and integrations that simplify everyday work. Explore Libby and other projects by Hugo L. Almeida."
 };
+// Icon artwork is separate from text, so translate labels without the old arrow glyph.
+for (const [label, translation] of Object.entries(window.horizontalEnglish)) {
+  if (label.includes('↗')) window.horizontalEnglish[label.replaceAll('↗', '').trim()] = translation.replaceAll('↗', '').trim();
+}
