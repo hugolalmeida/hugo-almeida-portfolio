@@ -27,7 +27,7 @@
 @media(max-width:900px),(max-height:600px){.about-copy{max-height:none;overflow:visible;padding-right:0}.about-copy h2{font-size:clamp(34px,5.6vw,52px)}}
 .portrait:hover img{filter:grayscale(0)}
 .first-site-note{border-left:2px solid var(--accent);padding:10px 14px;margin:14px 0 0;background:#b9a0ff09}.first-site-note .eyebrow{font-size:9px;color:var(--accent);margin-bottom:5px}.first-site-note>p:not(.eyebrow){font-size:12px;line-height:1.7;color:#c7bfdc;max-width:440px}.first-site-note .details-link{margin-top:5px;font-size:11px}.first-site-intro{font-size:14px;line-height:1.8;color:#cdc5e1;margin-bottom:30px;max-width:700px}.first-site-lessons{row-gap:30px}.first-site-footer{margin-top:20px}html[data-theme=light] :is(.first-site-note>p:not(.eyebrow),.first-site-intro){color:var(--muted)}
-#case-first-site .case-thumbnails{flex-wrap:wrap}
+#case-first-site .case-thumbnails,#case-ebooks .case-thumbnails{flex-wrap:wrap}
 .contact{background:radial-gradient(ellipse at 85% 65%,#23417b55,transparent 60%),radial-gradient(ellipse at 15% 20%,#4b2d7655,transparent 55%),#100e23;color:var(--paper)}
 .contact-body h2 .serif{color:#bdabff}.contact-arrow,.contact-star{color:#8eacff}.contact-body>p:not(.eyebrow){color:#c5bddc}.contact-links a{border-color:#b9a0ff66}.contact-links a:hover{color:#bdabff}.contact-foot{color:#b7accf}
 .scene-content{position:relative;display:flex;flex-direction:column;flex:1;min-height:0;width:100%}

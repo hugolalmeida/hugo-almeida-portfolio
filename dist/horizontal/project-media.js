@@ -51,7 +51,10 @@ window.horizontalProjectMedia = {
   }
 ],
   ebooks: [
-    {"type":"image","src":"assets/projects/canella-ebooks-home.png","label":"Página inicial","alt":"Página inicial da Biblioteca Canella & Santos com acesso gratuito e estante em montagem","caption":"Página pública da biblioteca, com acesso gratuito e perfil de estudante. A estante estava em montagem no momento da captura."}
+    {type: 'image', src: 'assets/projects/canella-ebooks-home.png', label: 'Biblioteca', alt: 'Biblioteca Canella & Santos com destaque para Reforma Tributária e dois ebooks na estante', caption: 'A biblioteca reúne os ebooks publicados em uma estante visual, com destaque para o lançamento e acesso gratuito.'},
+    {type: 'image', src: 'assets/projects/canella-ebooks-detail.png', label: 'Página do ebook', alt: 'Página do ebook Reforma Tributária com capa, descrição e opções de acesso', caption: 'Cada ebook tem uma página com apresentação do conteúdo, informações do material e caminhos para liberar o acesso.'},
+    {type: 'image', src: 'assets/projects/canella-ebooks-register.png', label: 'Cadastro profissional', alt: 'Formulário de cadastro profissional com dados de contato, empresa e consentimento', caption: 'O cadastro profissional reúne dados de contato, empresa e origem do lead para liberar a biblioteca.'},
+    {type: 'image', src: 'assets/projects/canella-ebooks-student.png', label: 'Cadastro de estudante', alt: 'Formulário de estudante com instituição de ensino, curso e período', caption: 'O perfil de estudante adapta o formulário para instituição de ensino, curso e período, mantendo o acesso gratuito.'}
   ],
   disbot: [],
   plid: []

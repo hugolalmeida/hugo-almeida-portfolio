@@ -30,4 +30,11 @@ Para revisar, abra `/`, navegue até os projetos e abra o estudo de caso. Confir
 
 ## Biblioteca de Ebooks
 
-`dist/assets/projects/canella-ebooks-home.png`: captura direta de https://ebook.canellahub.com.br/, em 26/10/2026, com viewport de 1440 × 1000, gerada em Chrome headless com perfil separado. A página exibia “Estante em montagem”. Nenhuma informação foi preenchida e nenhuma área autenticada foi acessada. Os links do portfólio direcionam ao site público; o repositório foi tornado privado pelo autor.
+Capturas diretas atualizadas em 27/10/2026, geradas em Chrome headless com perfil separado, viewport de 1440 × 1000 e captura da página completa, sem edição das imagens:
+
+- `dist/assets/projects/canella-ebooks-home.png`: https://ebook.canellahub.com.br/ — biblioteca com dois ebooks publicados na estante e destaque para Reforma Tributária.
+- `dist/assets/projects/canella-ebooks-detail.png`: https://ebook.canellahub.com.br/ebook/reforma-tributaria-guia-do-empresario — apresentação do ebook, capa e opções de acesso.
+- `dist/assets/projects/canella-ebooks-register.png`: https://ebook.canellahub.com.br/acesso — formulário profissional, incluindo empresa, cargo e origem do lead.
+- `dist/assets/projects/canella-ebooks-student.png`: https://ebook.canellahub.com.br/acesso?perfil=estudante — formulário adaptado para instituição de ensino, curso e período.
+
+Nenhuma informação foi preenchida ou enviada e nenhuma área autenticada foi acessada. As legendas e descrições alternativas têm tradução para inglês; as quatro miniaturas quebram linha em telas pequenas. Os links do portfólio direcionam ao site público; o repositório foi tornado privado pelo autor.
