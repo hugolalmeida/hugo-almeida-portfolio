@@ -1,0 +1,68 @@
+:root {
+  --motion-enter: 700ms;
+  --motion-exit: 240ms;
+  --motion-feedback: 150ms;
+  --motion-media: 420ms;
+  --motion-distance: 18px;
+  --motion-stagger: 80ms;
+  --motion-stagger-limit: 320ms;
+  --carousel-interval: 6000ms;
+  --motion-ease: cubic-bezier(.22,.68,0,1);
+  --skeleton-base: #9e8bbd16;
+  --skeleton-highlight: #c5b7ff1f;
+}
+/* Content is never held back by a page-wide loader. */
+html.motion-ready .reveal { transform: translateY(var(--motion-distance)); transition: opacity var(--motion-exit) var(--motion-ease), transform var(--motion-exit) var(--motion-ease); }
+html.motion-ready .is-visible .reveal { transform: none; transition: opacity var(--motion-enter) var(--motion-ease), transform var(--motion-enter) var(--motion-ease); transition-delay: var(--reveal-delay,0ms); }
+html.motion-ready .reveal:focus-within { opacity: 1; transform: none; pointer-events: auto; transition: none; }
+html[data-input=keyboard] .reveal { transition: none !important; }
+.detail-dialog[open] { animation: none; }
+.media-frame { position: relative; }
+.media-status { display: none; }
+.media-frame[data-media-state=loading] { background-color: var(--skeleton-base); }
+.media-frame[data-media-state=loading] > img,
+.media-frame[data-media-state=error] > img,
+.media-frame[data-media-state=loading] > video,
+.media-frame[data-media-state=error] > video { opacity: 0; }
+.media-frame[data-media-state=loading] > .media-status,
+.media-frame[data-media-state=error] > .media-status {
+  display: grid; place-items: center; position: absolute; inset: 0;
+  overflow: hidden; padding: 16px; font: 11px/1.6 'DM Sans',sans-serif;
+  text-align: center; color: var(--paper); background: var(--ink); pointer-events: none;
+}
+.media-frame[data-media-state=loading] > .media-status { background: var(--skeleton-base); color: var(--muted); }
+.media-frame[data-media-state=loading] > .media-status::before {
+  content: ''; position: absolute; inset: 0; transform: translateX(-100%);
+  background: linear-gradient(90deg,transparent,var(--skeleton-highlight),transparent);
+}
+html.motion-enabled .media-frame[data-media-state=loading] > .media-status::before { animation: skeleton-sweep 1.6s linear infinite; }
+.screen > .media-status { top: 30px !important; }
+.portrait > .media-status { bottom: 40px !important; }
+.case-thumbnails .media-status { font-size: 0 !important; padding: 0 !important; }
+.case-media { aspect-ratio: 16/9; max-height: 440px; overflow: hidden; }
+.case-media > a { display: block; width: 100%; height: 100%; }
+.case-media :is(img,video) { width: 100%; height: 100%; object-fit: contain; }
+.certificate-preview { display: block; }
+.certificate-deck { position: relative; }
+.motion-snapshot { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.certificate-progress { height: 2px; background: var(--line); margin: 8px 0 12px; overflow: hidden; }
+.certificate-progress > span { display: block; width: 100%; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+.journey-progress > span { transition: transform 120ms linear; }
+html.motion-enabled :is(button,.circle-link,.project-link-icons>a) { transition: transform var(--motion-feedback) var(--motion-ease), color var(--motion-feedback) var(--motion-ease), background-color var(--motion-feedback) var(--motion-ease); }
+@media(hover:hover) {
+  html.motion-enabled :is(button,.circle-link,.project-link-icons>a):active:not(:disabled) { transform: scale(.98); }
+}
+@keyframes skeleton-sweep { to { transform: translateX(100%); } }
+@media(max-width:900px),(max-height:600px) {
+  :root { --motion-enter: 620ms; }
+  .case-media { max-height: none; }
+}
+html.motion-paused .reveal { opacity: 1; transform: none; pointer-events: auto; }
+@media(prefers-reduced-motion:reduce) {
+  html:not(.motion-enabled) .reveal { opacity: 1; transform: none; pointer-events: auto; }
+}
+@media(forced-colors:active) {
+  .media-status { forced-color-adjust: none; color: CanvasText !important; background: Canvas !important; }
+  .certificate-progress { border: 1px solid CanvasText; }
+  .certificate-progress>span { background: CanvasText; }
+}

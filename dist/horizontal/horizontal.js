@@ -5,10 +5,12 @@ const previous = document.querySelector('#previous');
 const next = document.querySelector('#next');
 const horizontal = matchMedia('(min-width:901px) and (min-height:601px)');
 const motionQuery = new URLSearchParams(location.search).get('motion');
-// Motion starts enabled by the author's choice; visitors can pause it.
+// Respect the system default while allowing the visitor to explicitly opt in.
+const systemReducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 let motionPreference = ['on', 'off'].includes(motionQuery) ? motionQuery : window.horizontalPreferences?.motion || 'on';
 const t = value => window.horizontalPreferences?.translate(value) || value;
-const reduced = {get matches() {return motionPreference === 'off';}};
+let motionOverride = ['on', 'off'].includes(motionQuery) || window.horizontalPreferences?.motionOverride === true;
+const reduced = {get matches() {return motionPreference === 'off' || (systemReducedMotion.matches && !motionOverride);}};
 const motionToggle = document.querySelector('#motion-toggle');
 const motionReplay = document.querySelector('#motion-replay');
 let replayAnimations = [];
@@ -23,13 +25,14 @@ function updateMotionControls() {
   document.documentElement.classList.toggle('motion-paused', reduced.matches);
   motionToggle.textContent = t(reduced.matches ? 'Ativar efeitos' : 'Pausar efeitos');
   motionToggle.setAttribute('aria-pressed', String(!reduced.matches));
+  motionToggle.disabled = false;
   motionToggle.title = t('Ativar ou pausar animações nesta página');
   motionReplay.disabled = reduced.matches;
   window.dispatchEvent?.(new Event('horizontal-motion-change'));
 }
 
 function replayEntrance() {
-  if (reduced.matches) return;
+  if (reduced.matches || !window.portfolioMotion.enabled()) return;
   replayAnimations.forEach(animation => animation.cancel());
   replayAnimations = [];
   const scene = scenes[current];
@@ -37,15 +40,16 @@ function replayEntrance() {
   scene.querySelectorAll('.reveal').forEach((element, i) => {
     if (!element.animate) return;
     replayAnimations.push(element.animate([
-      {opacity: 0, transform: 'translate3d(0,28px,0)'},
+      {opacity: 0, transform: `translateY(${window.portfolioMotion.settings.distance})`},
       {opacity: 1, transform: 'translate3d(0,0,0)'}
-    ], {duration: 1100, delay: Math.min(i * 135, 810), easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards'}));
+    ], {duration: window.portfolioMotion.settings.enter, delay: Math.min(i * window.portfolioMotion.settings.stagger, window.portfolioMotion.settings.staggerLimit), easing: window.portfolioMotion.settings.easing, fill: 'backwards'}));
   });
 }
 
 updateMotionControls();
 motionToggle.addEventListener('click', () => {
   motionPreference = reduced.matches ? 'on' : 'off';
+  motionOverride = true;
   window.horizontalPreferences?.saveMotion(motionPreference);
   const url = new URL(location.href);
   url.searchParams.set('motion', motionPreference);
@@ -58,6 +62,13 @@ motionToggle.addEventListener('click', () => {
   replayEntrance();
 });
 motionReplay.addEventListener('click', replayEntrance);
+systemReducedMotion.addEventListener('change', () => {
+  cancelWheel();
+  replayAnimations.forEach(animation => animation.cancel());
+  updateMotionControls();
+  observeScenes();
+  scheduleMeasure();
+});
 
 document.querySelector('#scene-total').textContent = String(scenes.length).padStart(2, '0');
 
@@ -89,7 +100,7 @@ scenes.forEach(scene => {
   const elements = scene.querySelectorAll('.scene-top,.opening-body>.eyebrow,h1,.opening-bottom,.opening-foot,.libby-heading>*,.catalog,.project-foot,.operation-copy>*,.operation-figure,.projects h2,.project-list article,.project-instruction,.portrait,.about-copy>*,.learning-heading>*,.tool-strip,.certificate-carousel,.all-certificates,.trajectory-heading>*,.career-line li,.contact-body>*,.contact-foot');
   elements.forEach((element, i) => {
     element.classList.add('reveal');
-    element.style.setProperty('--reveal-delay', Math.min(i * 135, 810) + 'ms');
+    element.style.setProperty('--reveal-delay', Math.min(i * window.portfolioMotion.settings.stagger, window.portfolioMotion.settings.staggerLimit) + 'ms');
   });
 });
 observeScenes();
@@ -129,7 +140,7 @@ function goTo(index, focus = true) {
   cancelWheel();
   const scene = scenes[Math.max(0, Math.min(index, scenes.length - 1))];
   if (focus) scene.focus({preventScroll: true});
-  const behavior = reduced.matches ? 'instant' : 'smooth';
+  const behavior = reduced.matches || !window.portfolioMotion.enabled() ? 'instant' : 'smooth';
   if (horizontal.matches) gallery.scrollTo({left: scene.offsetLeft, behavior});
   else {
     const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
@@ -187,6 +198,7 @@ document.querySelectorAll('[data-dialog]').forEach(button => button.addEventList
   if (!dialog || dialog.open) return;
   dialog.addEventListener('close', () => button.focus({preventScroll: true}), {once: true});
   dialog.showModal();
+  window.portfolioMotion.enter(dialog);
   window.dispatchEvent?.(new Event('horizontal-panel-change'));
   dialog.scrollTop = 0;
 }));
@@ -195,7 +207,7 @@ document.querySelectorAll('.detail-dialog').forEach(dialog => {
   dialog.addEventListener('click', event => {
     if (event.target !== dialog) return;
     const rect = dialog.getBoundingClientRect();
-    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) window.portfolioMotion.close(dialog);
   });
 });
 
@@ -209,7 +221,6 @@ document.querySelectorAll('[data-screen]').forEach(button => button.addEventList
   const image = document.querySelector('#operation-image');
   image.src = 'assets/' + shot.file;
   image.alt = t(shot.alt);
-  if (!reduced.matches) image.animate?.([{opacity: 0.25, transform: 'translateY(6px)'}, {opacity: 1, transform: 'translateY(0)'}], {duration: 350, easing: 'ease-out'});
   document.querySelector('#screen-full').href = image.src;
   document.querySelector('#screen-label').textContent = t('LIBBY / ' + shot.label);
   document.querySelector('#screen-caption').textContent = t(shot.caption);

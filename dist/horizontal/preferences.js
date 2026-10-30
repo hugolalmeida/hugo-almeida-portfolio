@@ -6,6 +6,7 @@
   const query = new URLSearchParams(location.search);
   const choose = (key, values, fallback) => values.includes(query.get(key)) ? query.get(key) : values.includes(saved[key]) ? saved[key] : fallback;
   const state = {lang: choose('lang', ['pt', 'en'], 'pt'), theme: choose('theme', ['dark', 'light'], 'dark'), motion: choose('motion', ['on', 'off'], 'on')};
+  state.motionOverride = ['on', 'off'].includes(query.get('motion')) || saved.motionOverride === true;
   const root = document.documentElement;
   const textRecords = [];
   const attributeRecords = [];
@@ -41,8 +42,8 @@
     applyTheme();
     window.dispatchEvent(new Event('horizontal-language-change'));
   }
-  window.horizontalPreferences = {get language() {return state.lang;}, get motion() {return state.motion;}, translate,
-    saveMotion(value) {state.motion = value; persist();},
+  window.horizontalPreferences = {get language() {return state.lang;}, get motion() {return state.motion;}, get motionOverride() {return state.motionOverride;}, translate,
+    saveMotion(value) {state.motion = value; state.motionOverride = true; persist();},
     setLanguage(value) {if (!['pt', 'en'].includes(value)) return; state.lang = value; persist(); updateURL('lang'); applyLanguage();},
     toggleTheme() {state.theme = state.theme === 'dark' ? 'light' : 'dark'; persist(); updateURL('theme'); applyTheme();}
   };

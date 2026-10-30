@@ -14,7 +14,7 @@ As entradas em sequência combinam esmaecimento e pequeno deslocamento vertical.
 
 O tema escuro é o padrão inicial; o tema claro usa lavanda, branco e azul. PT/EN traduzem conteúdo, rótulos acessíveis e metadados. O currículo acompanha o idioma escolhido. Capturas e certificados mantêm o idioma original.
 
-Por escolha do autor, os efeitos iniciam ativados na primeira visita, independentemente da preferência de movimento reduzido do sistema. O botão “Pausar efeitos” interrompe animações, profundidade, suavização e carrosséis automáticos; a escolha de pausar é lembrada. O botão ↻ repete a entrada da seção.
+Os efeitos respeitam `prefers-reduced-motion` por padrão. O botão “Ativar efeitos” permite escolher explicitamente o movimento mesmo com redução ativada no sistema; essa escolha é lembrada. `?motion=on` também ativa essa escolha. O controle de repetição refaz a entrada da seção.
 
 Idioma, tema e movimento são salvos na chave `horizontal-preferences`, preservada na promoção para a página principal. `?lang=en&theme=light&motion=off` permite compartilhar preferências, com prioridade sobre as salvas.
 
@@ -66,3 +66,7 @@ O workflow `.github/workflows/deploy-pages.yml` valida os arquivos e publica `di
 No repositório, **Settings → Pages → Build and deployment → Source** deve estar em **GitHub Actions**. Acompanhe o workflow **Publicar portfolio no GitHub Pages** na aba **Actions**.
 
 Os caminhos relativos funcionam na subpasta do repositório. A configuração `vercel.json` permanece como alternativa de hospedagem.
+
+## Atualização visual
+
+Gradiente suave na abertura, vidro localizado na navegação e nos links da Libby e ajustes de hierarquia, com a stack estática preservada. Configurações, decisões sobre as quatro referências, licenças e limites de validação em [docs/visual-design.md](docs/visual-design.md). Execute `npm test` para verificar o ciclo de vida dos efeitos.

@@ -4,7 +4,7 @@ import {spawnSync} from 'node:child_process';
 import vm from 'node:vm';
 const base=new URL('../',import.meta.url);
 await access(new URL('dist/horizontal/depth.css',base));
-for(const file of ['dist/horizontal/english.js','dist/horizontal/preferences.js','dist/horizontal/project-media.js','dist/horizontal/showcase.js','dist/horizontal/depth.js','dist/horizontal/redirect.js','dist/anterior/app.js','dist/anterior/theme.js','dist/anterior/i18n.js']){
+for(const file of ['dist/horizontal/motion-ui.js','dist/horizontal/visual-effects.js','dist/horizontal/english.js','dist/horizontal/preferences.js','dist/horizontal/project-media.js','dist/horizontal/showcase.js','dist/horizontal/depth.js','dist/horizontal/redirect.js','dist/anterior/app.js','dist/anterior/theme.js','dist/anterior/i18n.js']){
  const check=spawnSync(process.execPath,['--check',fileURLToPath(new URL(file,base))],{encoding:'utf8'});
  if(check.error)throw check.error;
  if(check.status!==0)throw new Error(check.stderr);

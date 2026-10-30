@@ -9,6 +9,12 @@
   let selected = 0;
   let paused = false;
   let timer;
+  let countdown;
+  const motion = window.portfolioMotion;
+  const progress = document.createElement('div'); progress.className = 'certificate-progress';
+  progress.setAttribute('aria-hidden', 'true');
+  const progressFill = document.createElement('span'); progress.append(progressFill);
+  carousel.querySelector('.certificate-deck').before(progress);
 
   function effectsEnabled() {return document.documentElement.classList.contains('motion-enabled');}
   function canRotate() {
@@ -21,16 +27,24 @@
   }
   function schedule() {
     clearTimeout(timer);
-    if (canRotate()) timer = setTimeout(() => {if (canRotate()) show(selected + 1, false); else schedule();}, 6000);
+    countdown?.cancel(); countdown = null;
+    if (canRotate()) {
+      const duration = motion.settings.interval;
+      countdown = progressFill.animate?.([{transform:'scaleX(0)'},{transform:'scaleX(1)'}], {duration, easing:'linear', fill:'forwards'});
+      timer = setTimeout(() => {if (canRotate()) show(selected + 1, false); else schedule();}, duration);
+    }
   }
   function show(index, announce = true) {
-    selected = (index + cards.length) % cards.length;
+    const target = (index + cards.length) % cards.length;
+    if (target !== selected) motion.leave(cards[selected]);
+    selected = target;
     cards.forEach((card, i) => {
       card.hidden = i !== selected;
       card.setAttribute('role', 'group');
       card.setAttribute('aria-roledescription', 'slide');
       card.setAttribute('aria-label', `${i + 1} / ${cards.length}`);
     });
+    motion.enter(cards[selected]);
     document.querySelector('#certificate-position').textContent = `${String(selected + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}`;
     if (announce) document.querySelector('#certificate-status').textContent = `${selected + 1} / ${cards.length} — ${cards[selected].querySelector('h3').textContent}`;
     schedule();
@@ -75,58 +89,71 @@
   window.addEventListener('horizontal-motion-change', updateControls);
   window.addEventListener('horizontal-panel-change', schedule);
   window.addEventListener('horizontal-language-change', updateControls);
+  window.addEventListener('pagehide', () => {clearTimeout(timer); countdown?.cancel();});
+  window.addEventListener('pageshow', schedule);
   show(0, false);
   updateControls();
 
-  const refreshGalleries = [];
   for (const [key, items] of Object.entries(window.horizontalProjectMedia)) {
-    if (!items.length) continue;
     const dialog = document.querySelector('#case-' + key);
-    if (!dialog) continue;
-    const container = document.createElement('section');container.className = 'case-gallery';
-    const figure = document.createElement('figure');
-    const viewport = document.createElement('div');viewport.className = 'case-media';
-    const caption = document.createElement('figcaption');caption.setAttribute('aria-live', 'polite');
-    figure.append(viewport, caption);
-    const buttons = document.createElement('div');buttons.className = 'case-thumbnails';buttons.setAttribute('role', 'group');
-    const note = document.createElement('p');note.className = 'case-note';
-    container.append(figure, buttons, note);
-    dialog.querySelector('.case-tags').after(container);
+    if (!items.length || !dialog) continue;
+    let initialized = false;
     let active = 0;
+    let viewport, caption, buttons, note;
     function render() {
+      if (!dialog.open) return;
+      if (!initialized) initialize();
       const item = items[active];
       viewport.querySelector('video')?.pause();
       viewport.replaceChildren();
       if (item.type === 'video') {
-        const video = document.createElement('video');video.src = item.src;video.controls = true;video.playsInline = true;video.preload = 'metadata';
+        const video = document.createElement('video');
+        video.src = item.src; video.controls = true; video.playsInline = true; video.preload = 'metadata';
         if (item.poster) video.poster = item.poster;
         video.setAttribute('aria-label', t(item.alt || 'Vídeo de demonstração'));
         viewport.append(video);
       } else {
-        const link = document.createElement('a');link.href = item.src;link.target = '_blank';link.rel = 'noopener noreferrer';link.setAttribute('aria-label', t('Ampliar imagem do projeto'));
-        const image = document.createElement('img');image.src = item.src;image.alt = t(item.alt);image.loading = 'lazy';
-        link.append(image);viewport.append(link);
+        const link = document.createElement('a');
+        link.href = item.src; link.target = '_blank'; link.rel = 'noopener noreferrer';
+        link.setAttribute('aria-label', t('Ampliar imagem do projeto'));
+        const image = document.createElement('img');
+        image.alt = t(item.alt); image.loading = 'lazy'; image.decoding = 'async';
+        image.src = item.src;
+        link.append(image); viewport.append(link); motion.track(image);
       }
       caption.textContent = t(item.caption);
       [...buttons.children].forEach((button, i) => {
-        button.querySelector('span').textContent = t(items[i].label);
+        button.querySelector('.thumbnail-label').textContent = t(items[i].label);
         button.setAttribute('aria-pressed', String(i === active));
       });
       buttons.setAttribute('aria-label', t('Selecionar imagem do projeto'));
       note.textContent = key === 'libby' ? t('Captura da demo pública com dados fictícios e telas internas editadas para apresentação. Indicadores históricos no dashboard.') : key === 'first-site' ? t('Capturas do projeto original fornecidas pelo autor.') : '';
       note.hidden = !note.textContent;
     }
-    items.forEach((item, i) => {
-      const button = document.createElement('button');button.type = 'button';
-      if (item.type === 'image' || item.poster) {
-        const thumb = document.createElement('img');thumb.src = item.poster || item.src;thumb.alt = '';thumb.loading = 'lazy';button.append(thumb);
-      }
-      const label = document.createElement('span');button.append(label);
-      button.addEventListener('click', () => {active = i; render();});buttons.append(button);
-    });
-    dialog.addEventListener('close', () => viewport.querySelector('video')?.pause());
-    document.addEventListener('visibilitychange', () => {if (document.hidden) viewport.querySelector('video')?.pause();});
-    refreshGalleries.push(render);render();
+    function initialize() {
+      initialized = true;
+      const container = document.createElement('section'); container.className = 'case-gallery';
+      const figure = document.createElement('figure');
+      viewport = document.createElement('div'); viewport.className = 'case-media';
+      caption = document.createElement('figcaption'); caption.setAttribute('aria-live', 'polite');
+      figure.append(viewport, caption);
+      buttons = document.createElement('div'); buttons.className = 'case-thumbnails'; buttons.setAttribute('role', 'group');
+      note = document.createElement('p'); note.className = 'case-note';
+      container.append(figure, buttons, note);
+      dialog.querySelector('.case-tags').after(container);
+      items.forEach((item, i) => {
+        const button = document.createElement('button'); button.type = 'button';
+        if (item.type === 'image' || item.poster) {
+          const thumb = document.createElement('img'); thumb.alt = ''; thumb.loading = 'lazy'; thumb.decoding = 'async';
+          thumb.src = item.poster || item.src; button.append(thumb);
+        }
+        const label = document.createElement('span'); label.className = 'thumbnail-label'; button.append(label);
+        button.addEventListener('click', () => {if (active !== i) {active = i; render();}}); buttons.append(button);
+      });
+    }
+    dialog.addEventListener('close', () => viewport?.querySelector('video')?.pause());
+    document.addEventListener('visibilitychange', () => {if (document.hidden) viewport?.querySelector('video')?.pause();});
+    window.addEventListener('horizontal-panel-change', () => {if (dialog.open && !initialized) render();});
+    window.addEventListener('horizontal-language-change', render);
   }
-  window.addEventListener('horizontal-language-change', () => refreshGalleries.forEach(render => render()));
 })();

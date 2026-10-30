@@ -1,5 +1,7 @@
 // Portuguese-to-English copy for the portfolio.
 window.horizontalEnglish = {
+  "Carregando mídia…": "Loading media…",
+  "Mídia indisponível. Tente recarregar a página.": "Media unavailable. Try reloading the page.",
   "Biblioteca": "Library",
   "Página do ebook": "Ebook page",
   "Cadastro profissional": "Professional registration",
